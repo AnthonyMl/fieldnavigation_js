@@ -6,9 +6,10 @@
 var ctx;
 
 var robotDisplayRadius = 0.3;
+var robotSpeed = 11;
 var gridSize = 20;
 var startPosition = [-gridSize, -gridSize];
-var model = new Model(11, startPosition, new Circle([gridSize, gridSize], [-3, 0], 1),
+var model = new Model(startPosition, new Circle([gridSize, gridSize], [-3, 0], 1),
   [new Circle([-12, 13], [7, 0], 4), new Circle([-12, -8], [4, 0], 6), new Circle([2, 3.5], [-8, 0], 5), new Segment([-7, 4], [1, -11], 1.5)]);
 
 
@@ -49,10 +50,7 @@ function update(inputDt)
   updateRobot(dt);
   updateGoal(dt);
 
-  for(var obstacle of model.obstacles)
-  {
-    obstacle.update(dt);
-  }
+  for(var obstacle of model.obstacles) obstacle.update(dt);
 }
 
 
@@ -61,7 +59,7 @@ function updateRobot(dt)
   model.robotPosition =
     Vec2.length(Vec2.sub(model.robotPosition, model.goal.position)) < model.goal.radius ?
     startPosition :
-    Vec2.add(model.robotPosition, Vec2.scale(dt * model.robotSpeed, forceDirection(model.robotPosition)));
+    Vec2.add(model.robotPosition, Vec2.scale(dt * robotSpeed, forceDirection(model.robotPosition)));
 }
 
 

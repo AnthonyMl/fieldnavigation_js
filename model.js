@@ -1,8 +1,7 @@
 "use strict"
 
-function Model(robotSpeed, robotPosition, goal, obstacles)
+function Model(robotPosition, goal, obstacles)
 {
-  this.robotSpeed    = robotSpeed;
   this.robotPosition = robotPosition;
   this.goal          = goal;
   this.obstacles     = obstacles;
