@@ -72,7 +72,7 @@ Segment.prototype.draw = function()
 
 Segment.prototype.force = function(position)
 {
-  var ab = Vec2.sub(this.b, this.a);
+  var ab = Vec2.sub(this.b  , this.a);
   var ap = Vec2.sub(position, this.a);
   var bp = Vec2.sub(position, this.b);
 
@@ -90,6 +90,6 @@ Segment.prototype.force = function(position)
   {
     var perp = Vec2.normalize([-ab[1], ab[0]]);
     var perpDist = Vec2.dot(perp, ap);
-    return Vec2.scale(-(this.width*this.width) / (perpDist*perpDist), perp);
+    return Vec2.scale(((perpDist > 0 ? 1 : -1) * this.width * this.width) / (perpDist*perpDist), perp);
   }
 }
